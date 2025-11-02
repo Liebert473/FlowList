@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { signIn } from "@/lib/auth";
 import { signInWithGoogle } from "@/lib/auth";
 
@@ -7,6 +8,7 @@ export default function SignInPage() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const navigate = useNavigate();
 
   // ---------- Sign In with Email + Password ----------
   const handleEmailSignIn = async (e: React.FormEvent) => {
@@ -14,7 +16,8 @@ export default function SignInPage() {
     setLoading(true);
     setErrorMsg("");
     try {
-      signIn(email, password);
+      await signIn(email, password);
+      navigate("/");
     } catch (err: any) {
       setErrorMsg(err.message);
     }
@@ -25,7 +28,7 @@ export default function SignInPage() {
   const handleSignInWithGoogle = async () => {
     setLoading(true);
     try {
-      signInWithGoogle();
+      await signInWithGoogle();
     } catch (err: any) {
       setErrorMsg(err.message);
     }
@@ -100,6 +103,13 @@ export default function SignInPage() {
           />
           Continue with Google
         </button>
+
+        <p className="text-sm mt-4 w-full">
+          Don't have an account?{" "}
+          <a href="/signup" className="text-blue-400">
+            Signup
+          </a>
+        </p>
 
         <p className="text-xs text-slate-400 mt-6">
           By signing in, you agree to FlowList’s{" "}
