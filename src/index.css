@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:where(.dark *) );
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -39,6 +39,17 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Brand Colors */
+  --color-fl-primary: var(--color-fl-primary);
+  --color-fl-primary-hover: var(--color-fl-primary-hover);
+
+  --color-fl-hover: var(--color-fl-hover);
+  --color-fl-text: var(--color-fl-text);
+  --color-fl-info: var(--color-fl-info);
+  --color-fl-border: var(--color-fl-border);
+  --color-fl-bg: var(--color-fl-bg);
+  --color-fl-bg-sec: var(--color-fl-bg-sec)/* slightly gray */
 }
 
 :root {
@@ -74,6 +85,17 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* Brand Colors */
+  --color-fl-primary: #FF6C6C;
+  --color-fl-primary-hover: rgba(255, 108, 108, 0.85);
+
+  --color-fl-hover: rgba(128, 128, 128, 0.1);
+  --color-fl-text: var(--color-gray-900);
+  --color-fl-info: var(--color-gray-500);
+  --color-fl-border: var(--color-gray-200);
+  --color-fl-bg: #FFFFFF;
+  --color-fl-bg-sec: #F9FAFB; /* slightly gray */
 }
 
 .dark {
@@ -108,6 +130,14 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+
+  /* Brand Colors */
+  --color-fl-hover: rgba(255, 255, 255, 0.05);
+  --color-fl-text: #FFFFFF;
+  --color-fl-info: var(--color-gray-400); /* gray-400 */
+  --color-fl-border: var(--color-gray-800); /* gray-800 */
+  --color-fl-bg: #000000;
+  --color-fl-bg-sec: #111111; /* slightly gray */
 }
 
 @layer base {

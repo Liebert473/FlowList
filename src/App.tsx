@@ -7,6 +7,11 @@ import { useAuth } from "./contexts/AuthContext";
 import { AppLayout } from "./layouts/AppLayout";
 import { CheckEmailPage } from "./pages/CheckEmailPage";
 import { AuthCallback } from "./pages/AuthCallback";
+import { Tasks } from "./pages/Tasks";
+import { Projects } from "./pages/Projects";
+import { Journals } from "./pages/Journals";
+import { Assistant } from "./pages/Assistant";
+import { Profile } from "./pages/Profile";
 
 function App() {
   const { user, loading } = useAuth();
@@ -34,6 +39,46 @@ function App() {
             element={
               <PrivateRoute>
                 <Dashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/tasks"
+            element={
+              <PrivateRoute>
+                <Tasks />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/projects"
+            element={
+              <PrivateRoute>
+                <Projects />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/journals"
+            element={
+              <PrivateRoute>
+                <Journals />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/assistant"
+            element={
+              <PrivateRoute>
+                <Assistant />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <Profile />
               </PrivateRoute>
             }
           />
