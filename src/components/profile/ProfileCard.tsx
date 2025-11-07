@@ -7,6 +7,7 @@ import { useAuth } from "@/contexts/AuthContext";
 export default function ProfileCard() {
   const { user } = useAuth();
   const [profile, setProfile] = useState<ProfileType | null>(null);
+  console.log(profile);
 
   useEffect(() => {
     async function loadProfile() {
