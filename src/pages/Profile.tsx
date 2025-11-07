@@ -1,3 +1,8 @@
+import ProfileCard from "@/components/profile/ProfileCard";
 export const Profile = () => {
-  return <>Profile</>;
+  return (
+    <div className="flex flex-col">
+      <ProfileCard />
+    </div>
+  );
 };
