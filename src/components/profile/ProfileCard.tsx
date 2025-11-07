@@ -7,7 +7,6 @@ import { useAuth } from "@/contexts/AuthContext";
 export default function ProfileCard() {
   const { user } = useAuth();
   const [profile, setProfile] = useState<ProfileType | null>(null);
-  console.log(profile);
 
   useEffect(() => {
     async function loadProfile() {
@@ -43,11 +42,13 @@ export default function ProfileCard() {
           />
           <div className="text-center md:text-start">
             <h3 className="text-lg font-semibold text-fl-text">
-              {profile
-                ? `${profile.first_name == null ? "-" : profile.first_name} ${
-                    profile.last_name == null ? "-" : profile.last_name && "-"
-                  }`
-                : "Loading..."}
+              {profile ? (
+                <>
+                  {profile.first_name ?? "-"} {profile.last_name ?? "-"}
+                </>
+              ) : (
+                "Loading..."
+              )}
             </h3>
             <p className="text-sm text-fl-muted">
               {profile ? profile.email : "Loading..."}
