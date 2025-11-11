@@ -45,7 +45,7 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
     const fileExt = avatar.name.split(".").pop();
     const fileName = crypto.randomUUID() + fileExt;
 
-    const { data, error } = await supabase.storage
+    const { error } = await supabase.storage
       .from("avatars")
       .upload(user.id + "/" + fileName, avatar, {
         cacheControl: "60",

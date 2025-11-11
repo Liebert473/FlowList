@@ -29,12 +29,12 @@ export default function ProfileCard() {
           />
           <div className="text-center md:text-start">
             <h3 className="text-lg font-semibold text-fl-text">
-              {profile ? (
-                <>
-                  {profile.first_name ?? "-"} {profile.last_name ?? "-"}
-                </>
-              ) : (
+              {loading ? (
                 "Loading..."
+              ) : (
+                <>
+                  {profile?.first_name ?? "-"} {profile?.last_name ?? "-"}
+                </>
               )}
             </h3>
             <p className="text-sm text-fl-info">
