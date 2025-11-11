@@ -1,0 +1,23 @@
+Design Polishments
+0. Logo
+1. Toggle animation
+2. Skeletons
+3. Notifications and warnings
+4. Loading
+5. Edit forms
+6. More transistion animations
+
+Colors
+Red
+Orange
+Yellow
+Lime
+Green
+Teal
+Sky
+Blue
+Purple
+Fuchsia
+Pink
+Rose
+Slate

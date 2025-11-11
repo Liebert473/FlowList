@@ -1,24 +1,11 @@
 import { PencilSimple } from "@phosphor-icons/react";
-import { useState, useEffect } from "react";
-import { getUserProfile } from "@/lib/supabase";
-import type { ProfileType } from "@/types/types";
-import { useAuth } from "@/contexts/AuthContext";
+import { useState } from "react";
+import EditProfileCard from "./EditProfileCard";
+import { useProfile } from "@/contexts/ProfileContext";
 
 export default function ProfileCard() {
-  const { user } = useAuth();
-  const [profile, setProfile] = useState<ProfileType | null>(null);
-
-  useEffect(() => {
-    async function loadProfile() {
-      try {
-        const data = await getUserProfile(user.id);
-        setProfile(data);
-      } catch (err) {
-        console.error(err);
-      }
-    }
-    loadProfile();
-  }, [user.id]);
+  const { profile, loading } = useProfile();
+  const [openEdit, setOpenEdit] = useState(false);
 
   return (
     <div className="w-full mx-auto border border-fl-border rounded-lg p-6 text-fl-text">
@@ -50,18 +37,22 @@ export default function ProfileCard() {
                 "Loading..."
               )}
             </h3>
-            <p className="text-sm text-fl-muted">
+            <p className="text-sm text-fl-info">
               {profile ? profile.email : "Loading..."}
             </p>
           </div>
         </div>
 
         {/* Edit Button */}
-        <button className=" cursor-pointer flex items-center gap-2 bg-fl-primary text-white px-4 py-2 rounded-lg hover:bg-fl-primary-hover transition">
+        <button
+          onClick={() => setOpenEdit(true)}
+          className=" cursor-pointer flex items-center gap-2 bg-fl-primary text-white px-4 py-2 rounded-lg hover:bg-fl-primary-hover transition"
+        >
           <PencilSimple size={18} weight="fill" />
           <span className="text-sm font-medium">Edit</span>
         </button>
       </div>
+      {openEdit && <EditProfileCard onClose={() => setOpenEdit(false)} />}
     </div>
   );
 }
