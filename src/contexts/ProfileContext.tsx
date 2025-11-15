@@ -33,9 +33,10 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
 
   const updateProfile = async (updates: Partial<ProfileType>) => {
     if (!user) return;
+    const updatedAt = new Date().toISOString();
     const { error } = await supabase
       .from("profiles")
-      .update(updates)
+      .update({ ...updates, updated_at: updatedAt })
       .eq("id", user.id);
     if (error) throw error;
     await fetchProfile();
@@ -43,7 +44,7 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
 
   const uploadAvatar = async (avatar: File) => {
     const fileExt = avatar.name.split(".").pop();
-    const fileName = crypto.randomUUID() + fileExt;
+    const fileName = crypto.randomUUID() + "." + fileExt;
 
     const { error } = await supabase.storage
       .from("avatars")

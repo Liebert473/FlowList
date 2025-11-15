@@ -7,11 +7,12 @@ import { useAuth } from "./contexts/AuthContext";
 import { AppLayout } from "./layouts/AppLayout";
 import { CheckEmailPage } from "./pages/CheckEmailPage";
 import { AuthCallback } from "./pages/AuthCallback";
-import { Tasks } from "./pages/Tasks";
+import { TasksPage } from "./pages/TasksPage";
 import { Projects } from "./pages/Projects";
 import { Journals } from "./pages/Journals";
 import { Assistant } from "./pages/Assistant";
-import { Profile } from "./pages/Profile";
+import { ProfilePage } from "./pages/ProfilePage";
+import { TableDataProvider } from "./contexts/table_data/TableDataProvider";
 
 function App() {
   const { user, loading } = useAuth();
@@ -46,7 +47,9 @@ function App() {
             path="/tasks"
             element={
               <PrivateRoute>
-                <Tasks />
+                <TableDataProvider>
+                  <TasksPage />
+                </TableDataProvider>
               </PrivateRoute>
             }
           />
@@ -78,7 +81,7 @@ function App() {
             path="/profile"
             element={
               <PrivateRoute>
-                <Profile />
+                <ProfilePage />
               </PrivateRoute>
             }
           />

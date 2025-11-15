@@ -147,4 +147,18 @@
   body {
     @apply bg-background text-foreground;
   }
+   .custom-scrollbar::-webkit-scrollbar {
+    @apply size-1.5;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply rounded-full;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    /* Use direct hex/rgb values for scrollbar for consistency/simplicity */
+    background-color: #e5e7eb; /* bg-gray-200 */
+    border-radius: 9999px;     /* rounded-full */
+  }
+  .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #374151; /* bg-gray-700 */
+  }
 }
