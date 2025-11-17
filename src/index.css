@@ -49,7 +49,21 @@
   --color-fl-info: var(--color-fl-info);
   --color-fl-border: var(--color-fl-border);
   --color-fl-bg: var(--color-fl-bg);
-  --color-fl-bg-sec: var(--color-fl-bg-sec)/* slightly gray */
+  --color-fl-bg-sec: var(--color-fl-bg-sec);/* slightly gray */
+
+  --color-fl-red : var(--color-red-500);
+  --color-fl-orange : var(--color-orange-500);
+  --color-fl-yellow : var(--color-yellow-500);
+  --color-fl-lime : var(--color-lime-500);
+  --color-fl-green : var(--color-green-500);
+  --color-fl-teal : var(--color-teal-500);
+  --color-fl-sky : var(--color-sky-500);
+  --color-fl-blue : var(--color-blue-500);
+  --color-fl-purple : var(--color-purple-500);
+  --color-fl-fuchsia : var(--color-fuchsia-500);
+  --color-fl-pink : var(--color-pink-500);
+  --color-fl-rose : var(--color-rose-500);
+  --color-fl-slate : var(--color-slate-500);
 }
 
 :root {

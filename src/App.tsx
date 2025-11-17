@@ -12,7 +12,6 @@ import { Projects } from "./pages/Projects";
 import { Journals } from "./pages/Journals";
 import { Assistant } from "./pages/Assistant";
 import { ProfilePage } from "./pages/ProfilePage";
-import { TableDataProvider } from "./contexts/table_data/TableDataProvider";
 
 function App() {
   const { user, loading } = useAuth();
@@ -47,9 +46,7 @@ function App() {
             path="/tasks"
             element={
               <PrivateRoute>
-                <TableDataProvider>
-                  <TasksPage />
-                </TableDataProvider>
+                <TasksPage />
               </PrivateRoute>
             }
           />

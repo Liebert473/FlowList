@@ -1,11 +1,21 @@
 import { FunnelSimple, MagnifyingGlass } from "@phosphor-icons/react";
 import type { TableType } from "@/types/types";
+import { useCreateItem } from "@/features/items/useCreateItem";
 
 interface TableHeaderProps {
   tableData: TableType;
 }
 
 export default function TableHeader({ tableData }: TableHeaderProps) {
+  const createItem = useCreateItem();
+  const handelCreateItem = () => {
+    createItem.mutate({
+      table_id: tableData.id,
+      id: crypto.randomUUID(),
+      data: {},
+      created_at: new Date().toISOString(),
+    });
+  };
   return (
     <div className="flex items-center justify-between border-b border-fl-border py-4 px-6">
       {/* Left side */}
@@ -41,7 +51,10 @@ export default function TableHeader({ tableData }: TableHeaderProps) {
         </div>
 
         {/* New Button */}
-        <button className="px-5 py-1.5 rounded-lg bg-fl-primary text-white text-sm font-medium hover:bg-fl-primary-hover transitio cursor-pointer">
+        <button
+          onClick={handelCreateItem}
+          className="px-5 py-1.5 rounded-lg bg-fl-primary text-white text-sm font-medium hover:bg-fl-primary-hover transitio cursor-pointer"
+        >
           New
         </button>
       </div>
