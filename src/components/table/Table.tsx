@@ -58,32 +58,39 @@ const Table = ({ table }: TableProps) => {
             <div className="grid grid-cols-11 items-center border-b border-fl-border text-sm">
               {/* Select */}
               <div className="">
-                <Checkbox className="border-fl-border! data-[state=checked]:bg-fl-primary" />
+                <Checkbox className=" w-5 h-5 text-white! cursor-pointer border-fl-border! data-[state=checked]:bg-fl-primary! shadow-none hover:border-gray-900! dark:hover:border-white!" />
               </div>
 
               {columns?.map((col, key) => (
-                <div className="col-span-2 flex justify-between" key={key}>
+                <div
+                  className="col-span-2 flex justify-between gap-2 items-center"
+                  key={key}
+                >
                   <DataField column={col} item={item} />
                   {key == columns.length - 1 && (
-                    <DropdownMenu>
-                      <DropdownMenuTrigger>
-                        <DotsThreeVerticalIcon
-                          size={20}
-                          className="text-fl-text cursor-pointer"
-                        />
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent className="bg-fl-bg border border-fl-border text-fl-text">
-                        <DropdownMenuItem>Edit</DropdownMenuItem>
-                        <DropdownMenuItem
-                          onClick={() => deleteItem.mutate(item)}
-                        >
-                          Delete
-                        </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => handleDuplicate(item)}>
-                          Duplicate
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
+                    <div className="flex p-1 hover:bg-fl-hover rounded-md h-fit">
+                      <DropdownMenu>
+                        <DropdownMenuTrigger>
+                          <DotsThreeVerticalIcon
+                            size={18}
+                            className="text-fl-text cursor-pointer"
+                          />
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent className="bg-fl-bg border border-fl-border text-fl-text">
+                          <DropdownMenuItem>Edit</DropdownMenuItem>
+                          <DropdownMenuItem
+                            onClick={() => deleteItem.mutate(item)}
+                          >
+                            Delete
+                          </DropdownMenuItem>
+                          <DropdownMenuItem
+                            onClick={() => handleDuplicate(item)}
+                          >
+                            Duplicate
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </div>
                   )}
                 </div>
               ))}

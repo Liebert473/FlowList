@@ -19,6 +19,7 @@ export function useUpdateItem() {
         .from("items")
         .update(update)
         .eq("id", id)
+        .eq("table_id", table_id)
         .select()
         .single();
 

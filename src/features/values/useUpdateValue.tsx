@@ -19,6 +19,7 @@ export function useUpdateValue() {
         .from("values")
         .update(update)
         .eq("id", id)
+        .eq("column_id", column_id)
         .select()
         .single();
 
