@@ -22,24 +22,24 @@ import type { ValueType } from "@/types/types";
 import type { ColumnType } from "@/types/types";
 import { useCreateValue } from "@/features/values/useCreateValues";
 import { useValues } from "@/features/values/useValues";
-import { getRandomColor } from "@/utils/colors";
+import { getRandomColor, colorClasses, colors } from "@/utils/colors";
+import type { Color } from "@/utils/colors";
 import DebouncedInput from "./DebouncedInput";
 import { useUpdateValue } from "@/features/values/useUpdateValue";
 
-import { colors } from "@/utils/colors";
 import { useDeleteValue } from "@/features/values/useDeleteValues";
 
-type MultiSelectProps = {
+type MultiChoiceProps = {
   column: ColumnType;
   selectedValues: string[];
   onChange: (updated: any) => void;
 };
 
-export function MultiSelectDropdown({
+export function MultiChoiceDropdown({
   column,
   selectedValues,
   onChange,
-}: MultiSelectProps) {
+}: MultiChoiceProps) {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
   const { data: values } = useValues(column.id);
@@ -87,7 +87,9 @@ export function MultiSelectDropdown({
               .map((tag) => (
                 <div
                   key={tag.id}
-                  className={` shrink-0 flex items-center gap-1 px-3 py-1 rounded-md text-sm font-medium text-white bg-fl-${tag.color}`}
+                  className={` shrink-0 flex items-center gap-1 px-3 py-1 rounded-md text-sm font-medium text-white ${
+                    colorClasses[tag.color as Color].bg.normal
+                  }`}
                 >
                   {tag.label}
                   <button
@@ -187,7 +189,9 @@ export function MultiSelectDropdown({
                                 }}
                                 className="w-full flex items-center gap-3 px-2 py-2 rounded-md hover:bg-accent transition-colors"
                               >
-                                <div className={`h-6 w-6 rounded bg-fl-${c}`} />
+                                <div
+                                  className={`h-6 w-6 rounded ${colorClasses[c].bg.normal}`}
+                                />
                                 <span className="text-sm flex-1 text-left">
                                   {c}
                                 </span>
@@ -204,7 +208,9 @@ export function MultiSelectDropdown({
 
                   {/* Label */}
                   <div
-                    className={`text-white py-1 px-3 rounded-md bg-fl-${item.color} text-sm`}
+                    className={`text-white py-1 px-3 rounded-md ${
+                      colorClasses[item.color as Color].bg.normal
+                    } text-sm`}
                   >
                     {item.label}
                   </div>

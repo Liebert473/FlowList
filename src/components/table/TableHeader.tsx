@@ -4,9 +4,15 @@ import { useCreateItem } from "@/features/items/useCreateItem";
 
 interface TableHeaderProps {
   tableData: TableType;
+  search: string;
+  onSearch: (value: string) => void;
 }
 
-export default function TableHeader({ tableData }: TableHeaderProps) {
+export default function TableHeader({
+  tableData,
+  search,
+  onSearch,
+}: TableHeaderProps) {
   const createItem = useCreateItem();
   const handelCreateItem = () => {
     createItem.mutate({
@@ -47,6 +53,8 @@ export default function TableHeader({ tableData }: TableHeaderProps) {
             type="text"
             placeholder="Search..."
             className="bg-transparent outline-none text-sm ml-2 placeholder:text-fl-text/60 w-full"
+            value={search}
+            onChange={(e) => onSearch(e.target.value)}
           />
         </div>
 

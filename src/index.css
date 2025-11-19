@@ -51,6 +51,13 @@
   --color-fl-bg: var(--color-fl-bg);
   --color-fl-bg-sec: var(--color-fl-bg-sec);/* slightly gray */
 
+  --color-fl-hover-rev: var(--color-fl-hover-rev);
+  --color-fl-text-rev: var(--color-fl-text-rev);
+  --color-fl-info-rev: var(--color-fl-info-rev);
+  --color-fl-border-rev: var(--color-fl-border-rev);
+  --color-fl-bg-rev: var(--color-fl-bg-rev);
+  --color-fl-bg-sec-rev: var(--color-fl-bg-sec-rev);/* slightly gray */
+
   --color-fl-red : var(--color-red-500);
   --color-fl-orange : var(--color-orange-500);
   --color-fl-yellow : var(--color-yellow-500);
@@ -110,6 +117,13 @@
   --color-fl-border: var(--color-gray-200);
   --color-fl-bg: #FFFFFF;
   --color-fl-bg-sec: #F9FAFB; /* slightly gray */
+
+  --color-fl-hover-rev: rgba(255, 255, 255, 0.05); 
+  --color-fl-text-rev: #FFFFFF;
+  --color-fl-info-rev: var(--color-gray-400); /* gray-400 */
+  --color-fl-border-rev: var(--color-gray-800); /* gray-800 */
+  --color-fl-bg-rev: #000000;
+  --color-fl-bg-sec-rev: #111111; /* slightly gray */
 }
 
 .dark {
@@ -146,12 +160,19 @@
   --sidebar-ring: oklch(0.556 0 0);
 
   /* Brand Colors */
-  --color-fl-hover: rgba(255, 255, 255, 0.05);
+  --color-fl-hover: rgba(255, 255, 255, 0.05); 
   --color-fl-text: #FFFFFF;
   --color-fl-info: var(--color-gray-400); /* gray-400 */
   --color-fl-border: var(--color-gray-800); /* gray-800 */
   --color-fl-bg: #000000;
   --color-fl-bg-sec: #111111; /* slightly gray */
+
+  --color-fl-hover-rev: rgba(128, 128, 128, 0.1);
+  --color-fl-text-rev: var(--color-gray-900);
+  --color-fl-info-rev: var(--color-gray-500);
+  --color-fl-border-rev: var(--color-gray-200);
+  --color-fl-bg-rev: #FFFFFF;
+  --color-fl-bg-sec-rev: #F9FAFB; /* slightly gray */
 }
 
 @layer base {
