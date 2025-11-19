@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { Check, MoreHorizontal, Search } from "lucide-react";
-import { X, TrashIcon } from "@phosphor-icons/react";
+import { TrashIcon } from "@phosphor-icons/react";
 import {
   Popover,
   PopoverContent,
