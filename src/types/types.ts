@@ -43,3 +43,12 @@ export type TableType = {
   slug: string;
   created_at: string;
 }
+
+export type FilterState = Record<string, any>;
+
+export type SortDirection = "asc" | "desc";
+
+export interface SortState {
+  columnId: string | null;
+  direction: SortDirection;
+}

@@ -9,36 +9,21 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { DotsThreeVerticalIcon, MinusIcon } from "@phosphor-icons/react";
-import { useItems } from "@/features/items/useItems";
 import { useDeleteItem } from "@/features/items/useDeleteItem";
 import { useCreateItem } from "@/features/items/useCreateItem";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import BulkActionsBar from "./BulkActionBar";
 
 interface TableProps {
   table: TableType;
-  search: string;
+  items: ItemType[];
 }
 
-const Table = ({ table, search }: TableProps) => {
+const Table = ({ items, table }: TableProps) => {
   const { data: columns } = useColumns(table.id);
-  const { data: items } = useItems(table.id);
-  const titleColumn = columns?.find((col) => col.title == "Title");
   const deleteItem = useDeleteItem();
   const createItem = useCreateItem();
   const [selected, setSelected] = useState<ItemType[]>([]);
-
-  const filtered = useMemo(() => {
-    if (!titleColumn) {
-      return items;
-    } else {
-      return items?.filter(
-        (v) =>
-          v.data[titleColumn.id] == undefined ||
-          v.data[titleColumn.id]?.toLowerCase().includes(search.toLowerCase())
-      );
-    }
-  }, [items, search]);
 
   const toggleSelect = (item: ItemType) => {
     if (selected.includes(item)) {
@@ -98,7 +83,7 @@ const Table = ({ table, search }: TableProps) => {
 
         {/* Body */}
         <div className="flex flex-col min-w-[1100px] pb-16">
-          {filtered?.map((item) => (
+          {items?.map((item) => (
             <div
               key={item.id}
               className="px-8 hover:bg-fl-hover transition-colors"
@@ -148,7 +133,7 @@ const Table = ({ table, search }: TableProps) => {
               </div>
             </div>
           ))}
-          {filtered?.length == 0 && (
+          {items?.length == 0 && (
             <div className="text-fl-info flex flex-1 justify-center items-center my-12">
               No item found.
             </div>
