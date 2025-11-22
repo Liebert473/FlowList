@@ -1,7 +1,6 @@
-import type { ItemType, TableType } from "@/types/types";
+import type { ColumnType, ItemType, TableType } from "@/types/types";
 import { Checkbox } from "@/components/ui/checkbox";
 import { DataField } from "./DataField";
-import { useColumns } from "@/features/columns/useColumns";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,10 +16,10 @@ import BulkActionsBar from "./BulkActionBar";
 interface TableProps {
   table: TableType;
   items: ItemType[];
+  columns: ColumnType[];
 }
 
-const Table = ({ items, table }: TableProps) => {
-  const { data: columns } = useColumns(table.id);
+const Table = ({ items, table, columns }: TableProps) => {
   const deleteItem = useDeleteItem();
   const createItem = useCreateItem();
   const [selected, setSelected] = useState<ItemType[]>([]);

@@ -38,7 +38,7 @@ export default function Sidebar() {
             animate={{ x: 0, marginRight: 0 }}
             exit={{ x: -260, marginRight: -200 }}
             transition={{ type: "tween", duration: 0.3 }}
-            className="absolute sm:relative sm:top-0 top-[55px] bottom-0 left-0 flex flex-col justify-between w-56 bg-fl-bg-sec sm:h-full text-fl-text py-6 px-3 border-r border-fl-border"
+            className="absolute sm:relative sm:top-0 top-[55px] bottom-0 left-0 flex flex-col justify-between w-56 bg-fl-bg-sec sm:h-full text-fl-text py-6 px-3 border-r border-fl-border z-90"
           >
             {/* Top Section */}
             <div className="space-y-2">

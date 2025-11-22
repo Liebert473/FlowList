@@ -21,17 +21,19 @@ export type FilterState = Record<string, any>;
 
 interface TableFilterButtonProps {
   columns: ColumnType[];
+  filters: FilterState;
   onApplyFilters: (filters: FilterState) => void;
   onResetFilters: () => void;
 }
 
 export function TableFilterButton({
   columns,
+  filters,
   onApplyFilters,
   onResetFilters,
 }: TableFilterButtonProps) {
   const [open, setOpen] = useState(false);
-  const [tempFilters, setTempFilters] = useState<FilterState>({});
+  const [tempFilters, setTempFilters] = useState<FilterState>(filters);
 
   const activeCount = Object.keys(tempFilters).length;
 
@@ -70,7 +72,9 @@ export function TableFilterButton({
         <button
           className={` ${
             activeCount > 0 ? "text-fl-text" : "text-fl-info hover:text-fl-text"
-          } cursor-pointer flex py-2 px-4 items-center border border-fl-border hover:bg-fl-hover gap-2 bg-fl-bg rounded-full relative text-sm`}
+          } cursor-pointer flex py-2 px-4 items-center border border-fl-border hover:bg-fl-hover flex-1 gap-2 rounded-md relative text-sm
+          md:rounded-full md:flex-0
+          `}
         >
           <Filter className="h-4 w-4" />
           Filter

@@ -46,16 +46,18 @@ export function TableSortButton({
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <button
-            className={`px-4 py-2 border border-fl-border cursor-pointer gap-2 flex items-center rounded-full ${
+            className={`px-4 py-2 border border-fl-border hover:bg-fl-hover cursor-pointer gap-2 flex items-center rounded-md flex-1 ${
               sortState.columnId
                 ? "text-fl-text"
                 : "text-fl-info hover:text-fl-text"
-            }`}
+            }
+            md:rounded-full md:flex-0
+            `}
           >
             <ArrowUpDown className="h-4 w-4" />
             <span className="text-sm">Sort</span>
             {sortState.columnId && (
-              <span className="ml-1 text-xs text-fl-primary">
+              <span className="ml-1 text-xs text-fl-primary whitespace-nowrap">
                 {columns.find((c) => c.id === sortState.columnId)?.title}
                 {sortState.direction === "asc" ? " (A-Z)" : " (Z-A)"}
               </span>

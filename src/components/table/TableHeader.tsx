@@ -1,65 +1,39 @@
-import { MagnifyingGlass } from "@phosphor-icons/react";
-import { type SortState, type ItemType, type TableType } from "@/types/types";
+import { MagnifyingGlass, HurricaneIcon } from "@phosphor-icons/react";
+import { type SortState, type TableType } from "@/types/types";
 import { useCreateItem } from "@/features/items/useCreateItem";
-import { useItems } from "@/features/items/useItems";
-import { useColumns } from "@/features/columns/useColumns";
 import { TableFilterButton } from "@/components/table/filter/TableFilterButton";
-import { useEffect, useMemo } from "react";
-import { getFilteredItems } from "@/components/table/filter/FilterLogic";
-import type { FilterState } from "@/types/types";
-import { useState } from "react";
+import type { ColumnType, FilterState } from "@/types/types";
 import { TableSortButton } from "./sort/TableSortButton";
-import { useSortedItems } from "./sort/SortLogic";
+
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
 
 interface TableHeaderProps {
   table: TableType;
-  onItemChange: (items: ItemType[]) => void;
+  columns: ColumnType[];
+  // Controlled Props
+  search: string;
+  onSearchChange: (val: string) => void;
+  filters: FilterState;
+  onFilterChange: (val: FilterState) => void;
+  sortState: SortState;
+  onSortChange: (val: SortState) => void;
 }
 
-export default function TableHeader({ table, onItemChange }: TableHeaderProps) {
-  const { data: items } = useItems(table.id);
-  const { data: columns } = useColumns(table.id);
-
-  const [search, setSearch] = useState("");
-  const titleColumn = columns?.find((col) => col.title == "Title");
-
-  const [filters, setFilters] = useState<FilterState>({});
-  const [sortState, setSortState] = useState<SortState>({
-    columnId: null,
-    direction: "asc",
-  });
-
-  const filteredItems = useMemo(() => {
-    return getFilteredItems(items ?? [], filters);
-  }, [items, filters]);
-
-  const searched = useMemo(() => {
-    if (!titleColumn) {
-      return filteredItems;
-    } else {
-      return filteredItems?.filter((v) => {
-        const value = v.data[titleColumn.id];
-        return (
-          value === undefined ||
-          (typeof value === "string" &&
-            value.toLowerCase().includes(search.toLowerCase()))
-        );
-      });
-    }
-  }, [filteredItems, search, titleColumn]);
-
-  const { sortedItems, isSorting } = useSortedItems(
-    searched,
-    sortState,
-    columns ?? []
-  );
-
-  useEffect(() => {
-    if (!isSorting) {
-      onItemChange(sortedItems);
-    }
-  }, [sortedItems, isSorting, items, onItemChange]);
-
+export default function TableHeader({
+  table,
+  columns,
+  search,
+  onSearchChange,
+  filters,
+  onFilterChange,
+  sortState,
+  onSortChange,
+}: TableHeaderProps) {
   const createItem = useCreateItem();
   const handelCreateItem = () => {
     createItem.mutate({
@@ -71,44 +45,100 @@ export default function TableHeader({ table, onItemChange }: TableHeaderProps) {
   };
   return (
     <div className="flex items-center justify-between border-b border-fl-border py-4 px-6">
-      {/* Left side */}
+      {/* Left side: Title */}
       <h2 className="text-xl font-semibold text-fl-text relative">
         {table?.title ?? "Not Found"}
         <span className="block w-10 h-0.5 bg-fl-primary mt-1 rounded"></span>
       </h2>
 
-      {/* Right side */}
-      <div className="flex items-center gap-3">
-        {/* Filter Buttons */}
-
-        <TableFilterButton
-          columns={columns || []}
-          onApplyFilters={setFilters}
-          onResetFilters={() => setFilters({})}
-        />
-
-        <TableSortButton
-          columns={columns || []}
-          sortState={sortState}
-          onSortChange={setSortState}
-        />
-
-        {/* Search Bar */}
-        <div className="flex items-center border border-fl-border rounded-full px-3 py-1.5 text-fl-text bg-transparent w-52 focus-within:ring-1 focus-within:ring-fl-primary">
-          <MagnifyingGlass size={18} className="opacity-70" />
-          <input
-            type="text"
-            placeholder="Search..."
-            className="bg-transparent outline-none text-sm ml-2 placeholder:text-fl-text/60 w-full"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
+      {/* Right side: Actions */}
+      <div className="flex items-center gap-2 md:gap-3">
+        {/* ========================================= */}
+        {/* DESKTOP VIEW (Hidden on mobile)           */}
+        {/* ========================================= */}
+        <div className="hidden md:flex items-center gap-3">
+          <TableFilterButton
+            filters={filters}
+            columns={columns || []}
+            onApplyFilters={onFilterChange}
+            onResetFilters={() => onFilterChange({})}
           />
+
+          <TableSortButton
+            columns={columns || []}
+            sortState={sortState}
+            onSortChange={onSortChange}
+          />
+
+          {/* Desktop Search Bar */}
+          <div className="flex items-center border border-fl-border rounded-full px-3 py-1.5 text-fl-text bg-transparent w-52 focus-within:ring-1 focus-within:ring-fl-primary">
+            <MagnifyingGlass size={18} className="opacity-70" />
+            <input
+              type="text"
+              placeholder="Search..."
+              className="bg-transparent outline-none text-sm ml-2 placeholder:text-fl-text/60 w-full"
+              value={search}
+              onChange={(e) => onSearchChange(e.target.value)}
+            />
+          </div>
         </div>
 
-        {/* New Button */}
+        {/* ========================================= */}
+        {/* MOBILE VIEW (Collapsed into Popover)      */}
+        {/* ========================================= */}
+        <div className="md:hidden">
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                variant="outline"
+                size="icon"
+                className="h-9 w-9 border-fl-border!"
+              >
+                <HurricaneIcon size={18} />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent
+              align="end"
+              className="w-[260px] p-3 space-y-3 block md:hidden"
+            >
+              {/* Mobile Search Bar */}
+              <div className="flex items-center border border-fl-border rounded-md px-3 py-2 text-fl-text bg-transparent w-full focus-within:ring-1 focus-within:ring-fl-primary">
+                <MagnifyingGlass size={18} className="opacity-70" />
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  className="bg-transparent outline-none text-sm ml-2 placeholder:text-fl-text/60 w-full"
+                  value={search}
+                  onChange={(e) => onSearchChange(e.target.value)}
+                />
+              </div>
+
+              {/* Mobile Filter & Sort Row */}
+              <div className="flex">
+                <div className="flex flex-1 flex-col gap-2">
+                  <TableFilterButton
+                    filters={filters}
+                    columns={columns || []}
+                    onApplyFilters={onFilterChange}
+                    onResetFilters={() => onFilterChange({})}
+                  />
+                  <TableSortButton
+                    columns={columns || []}
+                    sortState={sortState}
+                    onSortChange={onSortChange}
+                  />
+                </div>
+              </div>
+            </PopoverContent>
+          </Popover>
+        </div>
+
+        {/* ========================================= */}
+        {/* PRIMARY ACTION (Always Visible)           */}
+        {/* ========================================= */}
         <button
           onClick={handelCreateItem}
-          className="px-5 py-1.5 rounded-lg bg-fl-primary text-white text-sm font-medium hover:bg-fl-primary-hover transitio cursor-pointer"
+          className="px-5 py-1.5 rounded-lg bg-fl-primary text-white text-sm font-medium hover:bg-fl-primary-hover transition cursor-pointer whitespace-nowrap"
         >
           New
         </button>

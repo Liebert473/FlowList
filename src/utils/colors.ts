@@ -12,6 +12,7 @@ export const colors = [
   "pink",
   "rose",
   "slate",
+  "mono"
 ] as const;
 
 export type Color = (typeof colors)[number];
@@ -157,6 +158,16 @@ export const colorClasses: ColorClassMap = {
     text: {
       normal: "text-slate-500",
       transparent: "text-slate-500/60"
+    }
+  },
+    mono: {
+    bg: {
+      normal: "bg-gray-900 dark:bg-white text-white dark:text-gray-900",
+      transparent: "bg-gray-900/60 dark:bg-white/60"
+    },
+    text: {
+      normal: "text-gray-900 dark:text-white",
+      transparent: "text-gray-900/60 dark:text-white/60"
     }
   }
 };
