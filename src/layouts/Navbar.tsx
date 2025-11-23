@@ -13,9 +13,9 @@ export default function Navbar() {
       >
         <div className="flex">
           {sidebarOpen ? (
-            <XIcon size={22} className="text-white" />
+            <XIcon size={22} className="text-fl-insider" />
           ) : (
-            <List size={22} className="text-white" />
+            <List size={22} className="text-fl-insider" />
           )}
         </div>
       </button>
@@ -25,7 +25,7 @@ export default function Navbar() {
 
       {/* Right icon */}
       <button className="p-2 rounded-lg bg-fl-primary hover:bg-fl-primary-hover transition cursor-pointer">
-        <Bell size={22} className="text-white" />
+        <Bell size={22} className="text-fl-insider" />
       </button>
     </header>
   );

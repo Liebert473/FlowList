@@ -22,6 +22,8 @@ export const DataField = ({ column, item }: DataFieldProps) => {
       },
     });
   };
+  console.log(item);
+  console.log(item.data[column.id]);
   return (
     <div className="flex hover:bg-fl-bg hover:outline hover:outline-fl-primary rounded-md h-12 px-2 cursor-pointer transition flex-1 overflow-hidden">
       {"multiChoice" == column.type ? (

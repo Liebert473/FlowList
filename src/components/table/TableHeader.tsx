@@ -1,4 +1,4 @@
-import { MagnifyingGlass, HurricaneIcon } from "@phosphor-icons/react";
+import { MagnifyingGlass, List } from "@phosphor-icons/react";
 import { type SortState, type TableType } from "@/types/types";
 import { useCreateItem } from "@/features/items/useCreateItem";
 import { TableFilterButton } from "@/components/table/filter/TableFilterButton";
@@ -52,11 +52,11 @@ export default function TableHeader({
       </h2>
 
       {/* Right side: Actions */}
-      <div className="flex items-center gap-2 md:gap-3">
+      <div className="flex items-center gap-2 lg:gap-3">
         {/* ========================================= */}
         {/* DESKTOP VIEW (Hidden on mobile)           */}
         {/* ========================================= */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-3">
           <TableFilterButton
             filters={filters}
             columns={columns || []}
@@ -86,20 +86,20 @@ export default function TableHeader({
         {/* ========================================= */}
         {/* MOBILE VIEW (Collapsed into Popover)      */}
         {/* ========================================= */}
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <Popover>
             <PopoverTrigger asChild>
               <Button
                 variant="outline"
                 size="icon"
-                className="h-9 w-9 border-fl-border!"
+                className="h-9 w-9 border-fl-border! shadow-none"
               >
-                <HurricaneIcon size={18} />
+                <List size={18} />
               </Button>
             </PopoverTrigger>
             <PopoverContent
               align="end"
-              className="w-[260px] p-3 space-y-3 block md:hidden"
+              className="w-[260px] p-3 space-y-3 block lg:hidden"
             >
               {/* Mobile Search Bar */}
               <div className="flex items-center border border-fl-border rounded-md px-3 py-2 text-fl-text bg-transparent w-full focus-within:ring-1 focus-within:ring-fl-primary">
@@ -138,7 +138,7 @@ export default function TableHeader({
         {/* ========================================= */}
         <button
           onClick={handelCreateItem}
-          className="px-5 py-1.5 rounded-lg bg-fl-primary text-white text-sm font-medium hover:bg-fl-primary-hover transition cursor-pointer whitespace-nowrap"
+          className="px-5 py-1.5 rounded-lg bg-fl-primary text-fl-insider text-sm font-medium hover:bg-fl-primary-hover transition cursor-pointer whitespace-nowrap"
         >
           New
         </button>

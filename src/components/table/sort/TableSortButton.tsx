@@ -51,7 +51,7 @@ export function TableSortButton({
                 ? "text-fl-text"
                 : "text-fl-info hover:text-fl-text"
             }
-            md:rounded-full md:flex-0
+            lg:rounded-full lg:flex-0
             `}
           >
             <ArrowUpDown className="h-4 w-4" />

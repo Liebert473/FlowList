@@ -45,7 +45,7 @@ export default function EditProfileCard({ onClose }: EditProfileCardProps) {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50">
-      <div className="w-full max-w-lg bg-fl-bg-sec rounded-xl shadow-lg border border-fl-border p-6 text-fl-text animate-fadeIn">
+      <div className="w-full max-w-lg m-2 bg-fl-bg-sec rounded-xl shadow-lg border border-fl-border p-6 text-fl-text animate-fadeIn">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-semibold underline decoration-fl-primary">
@@ -116,7 +116,7 @@ export default function EditProfileCard({ onClose }: EditProfileCardProps) {
             disabled={!isChanged}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition ${
               isChanged
-                ? "bg-fl-primary text-white hover:bg-fl-primary-hover"
+                ? "bg-fl-primary text-fl-insider hover:bg-fl-primary-hover"
                 : "opacity-50 cursor-not-allowed bg-fl-primary"
             }`}
           >

@@ -73,7 +73,7 @@ export function TableFilterButton({
           className={` ${
             activeCount > 0 ? "text-fl-text" : "text-fl-info hover:text-fl-text"
           } cursor-pointer flex py-2 px-4 items-center border border-fl-border hover:bg-fl-hover flex-1 gap-2 rounded-md relative text-sm
-          md:rounded-full md:flex-0
+          lg:rounded-full lg:flex-0
           `}
         >
           <Filter className="h-4 w-4" />
@@ -177,7 +177,7 @@ export function TableFilterButton({
           <Button
             size="sm"
             onClick={handleApply}
-            className="h-7 text-xs bg-fl-primary text-white hover:bg-fl-primary-hover"
+            className="h-7 text-xs bg-fl-primary text-fl-insider hover:bg-fl-primary-hover"
           >
             Apply
           </Button>

@@ -9,9 +9,9 @@ export type ProfileType = {
 };
 
 export type ValueType = {
-  id: string;
-  user_id: string;
-  column_id: string;
+  id: string; //uuid
+  user_id: string; //uuid
+  column_id: string; //uuid
   label: string;
   color: string;
   metadata?: Record<string, any>;
@@ -19,17 +19,17 @@ export type ValueType = {
 }
 
 export type ItemType = {
-  id: string;
-  user_id: string;
-  table_id: string;
+  id: string; //uuid
+  user_id: string; //uuid
+  table_id: string; //uuid
   data: Record<string, any>;
   created_at: string;
 }
 
 export type ColumnType = {
-  id: string;
-  user_id: string;
-  table_id: string;
+  id: string; //uuid
+  user_id: string; //uuid
+  table_id: string; //uuid
   title: string;
   type: string
   metadata: Record<string, any>;

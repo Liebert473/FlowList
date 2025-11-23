@@ -10,8 +10,9 @@ export default function ProfileCard() {
   return (
     <div className="w-full mx-auto border border-fl-border rounded-lg p-6 text-fl-text">
       {/* Header */}
-      <h2 className="text-xl font-semibold mb-6 border-b-2 border-transparent inline-block pb-1 underline decoration-fl-primary">
+      <h2 className="text-xl font-semibold text-fl-text relative mb-6">
         Profile
+        <span className="block w-8 h-0.5 bg-fl-primary mt-1 rounded"></span>
       </h2>
 
       {/* Content Row */}
@@ -46,7 +47,7 @@ export default function ProfileCard() {
         {/* Edit Button */}
         <button
           onClick={() => setOpenEdit(true)}
-          className=" cursor-pointer flex items-center gap-2 bg-fl-primary text-white px-4 py-2 rounded-lg hover:bg-fl-primary-hover transition"
+          className=" cursor-pointer flex items-center gap-2 bg-fl-primary text-fl-insider px-4 py-2 rounded-lg hover:bg-fl-primary-hover transition"
         >
           <PencilSimple size={18} weight="fill" />
           <span className="text-sm font-medium">Edit</span>

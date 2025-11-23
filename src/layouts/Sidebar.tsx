@@ -38,7 +38,7 @@ export default function Sidebar() {
             animate={{ x: 0, marginRight: 0 }}
             exit={{ x: -260, marginRight: -200 }}
             transition={{ type: "tween", duration: 0.3 }}
-            className="absolute sm:relative sm:top-0 top-[55px] bottom-0 left-0 flex flex-col justify-between w-56 bg-fl-bg-sec sm:h-full text-fl-text py-6 px-3 border-r border-fl-border z-90"
+            className="absolute md:relative md:top-0 top-[55px] bottom-0 left-0 flex flex-col justify-between w-56 bg-fl-bg-sec md:h-full text-fl-text py-6 px-3 border-r border-fl-border z-49"
           >
             {/* Top Section */}
             <div className="space-y-2">
@@ -52,7 +52,7 @@ export default function Sidebar() {
                     className={`flex items-center w-full gap-3 px-4 py-2.5 rounded-lg transition text-sm font-medium cursor-pointer
                 ${
                   isActive
-                    ? "bg-fl-primary text-white hover:bg-fl-primary-hover"
+                    ? "bg-fl-primary text-fl-insider hover:bg-fl-primary-hover"
                     : "text-fl-text hover:bg-fl-hover"
                 }`}
                   >

@@ -46,6 +46,7 @@
 
   --color-fl-hover: var(--color-fl-hover);
   --color-fl-text: var(--color-fl-text);
+  --color-fl-insider: var(--color-fl-insider);
   --color-fl-info: var(--color-fl-info);
   --color-fl-border: var(--color-fl-border);
   --color-fl-bg: var(--color-fl-bg);
@@ -58,19 +59,19 @@
   --color-fl-bg-rev: var(--color-fl-bg-rev);
   --color-fl-bg-sec-rev: var(--color-fl-bg-sec-rev);/* slightly gray */
 
-  --color-fl-red : var(--color-red-500);
-  --color-fl-orange : var(--color-orange-500);
-  --color-fl-yellow : var(--color-yellow-500);
-  --color-fl-lime : var(--color-lime-500);
-  --color-fl-green : var(--color-green-500);
-  --color-fl-teal : var(--color-teal-500);
-  --color-fl-sky : var(--color-sky-500);
-  --color-fl-blue : var(--color-blue-500);
-  --color-fl-purple : var(--color-purple-500);
-  --color-fl-fuchsia : var(--color-fuchsia-500);
-  --color-fl-pink : var(--color-pink-500);
-  --color-fl-rose : var(--color-rose-500);
-  --color-fl-slate : var(--color-slate-500);
+  --color-fl-red : var(--color-fl-red);
+  --color-fl-orange : var(--color-fl-orange);
+  --color-fl-yellow : var(--color-fl-yellow);
+  --color-fl-lime : var(--color-fl-lime);
+  --color-fl-green : var(--color-fl-green);
+  --color-fl-teal : var(--color-fl-teal);
+  --color-fl-sky : var(--color-fl-sky);
+  --color-fl-blue : var(--color-fl-blue);
+  --color-fl-purple : var(--color-fl-purple);
+  --color-fl-fuchsia : var(--color-fl-fuchsia);
+  --color-fl-pink : var(--color-fl-pink);
+  --color-fl-rose : var(--color-fl-rose);
+  --color-fl-slate : var(--color-fl-slate);
 }
 
 :root {
@@ -108,12 +109,12 @@
   --sidebar-ring: oklch(0.708 0 0);
 
   /* Brand Colors */
-  --color-fl-primary: #FF6C6C;
-  --color-fl-primary-hover: rgba(255, 108, 108, 0.85);
+  --color-fl-primary-hover: color-mix(in oklab, var(--color-fl-primary) 90%, transparent);
 
   --color-fl-hover: rgba(128, 128, 128, 0.1);
   --color-fl-text: var(--color-gray-900);
-  --color-fl-info: var(--color-gray-500);
+  --color-fl-insider: #FFFFFF;
+  --color-fl-info: var(--color-gray-400);
   --color-fl-border: var(--color-gray-200);
   --color-fl-bg: #FFFFFF;
   --color-fl-bg-sec: #F9FAFB; /* slightly gray */
@@ -124,6 +125,22 @@
   --color-fl-border-rev: var(--color-gray-800); /* gray-800 */
   --color-fl-bg-rev: #000000;
   --color-fl-bg-sec-rev: #111111; /* slightly gray */
+
+  --color-fl-mono: var(--color-gray-900);
+
+  --color-fl-red : var(--color-red-400);
+  --color-fl-orange : var(--color-orange-400);
+  --color-fl-yellow : var(--color-yellow-400);
+  --color-fl-lime : var(--color-lime-400);
+  --color-fl-green : var(--color-green-400);
+  --color-fl-teal : var(--color-teal-400);
+  --color-fl-sky : var(--color-sky-400);
+  --color-fl-blue : var(--color-blue-400);
+  --color-fl-purple : var(--color-purple-400);
+  --color-fl-fuchsia : var(--color-fuchsia-400);
+  --color-fl-pink : var(--color-pink-400);
+  --color-fl-rose : var(--color-rose-400);
+  --color-fl-slate : var(--color-slate-400);
 }
 
 .dark {
@@ -169,10 +186,60 @@
 
   --color-fl-hover-rev: rgba(128, 128, 128, 0.1);
   --color-fl-text-rev: var(--color-gray-900);
-  --color-fl-info-rev: var(--color-gray-500);
+  --color-fl-info-rev: var(--color-gray-400);
   --color-fl-border-rev: var(--color-gray-200);
   --color-fl-bg-rev: #FFFFFF;
   --color-fl-bg-sec-rev: #F9FAFB; /* slightly gray */
+
+  --color-fl-mono: #FFFFFF;
+}
+
+.theme-red{
+  --color-fl-primary: var(--color-fl-red);
+}
+.theme-orange{
+  --color-fl-primary: var(--color-fl-orange);
+}
+.theme-yellow{
+  --color-fl-primary: var(--color-fl-yellow);
+}
+.theme-lime{
+  --color-fl-primary: var(--color-fl-lime);
+}
+.theme-green{
+  --color-fl-primary: var(--color-fl-green);
+}
+.theme-teal{
+  --color-fl-primary: var(--color-fl-teal);
+}
+.theme-sky{
+  --color-fl-primary: var(--color-fl-sky);
+}
+.theme-blue{
+  --color-fl-primary: var(--color-fl-blue);
+}
+.theme-purple{
+  --color-fl-primary: var(--color-fl-purple);
+}
+.theme-fuchsia{
+  --color-fl-primary: var(--color-fl-fuchsia);
+}
+.theme-pink{
+  --color-fl-primary: var(--color-fl-pink);
+}
+.theme-rose{
+  --color-fl-primary: var(--color-fl-rose);
+}
+.theme-slate{
+  --color-fl-primary: var(--color-fl-slate);
+}
+
+.theme-mono{
+  --color-fl-primary : var(--color-fl-mono)
+}
+
+.theme-mono.dark {
+  --color-fl-insider: var(--color-gray-900);
 }
 
 @layer base {

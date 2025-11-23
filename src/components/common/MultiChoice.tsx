@@ -87,9 +87,9 @@ export function MultiChoiceDropdown({
               .map((tag) => (
                 <div
                   key={tag.id}
-                  className={` shrink-0 flex items-center gap-1 px-3 py-1 rounded-md text-sm font-medium text-white ${
-                    colorClasses[tag.color as Color].bg.normal
-                  }`}
+                  className={` shrink-0 flex items-center gap-1 px-3 py-1 rounded-md text-sm font-medium ${
+                    tag.color !== "mono" ? "text-white" : ""
+                  } ${colorClasses[tag.color as Color].bg.normal}`}
                 >
                   {tag.label}
                   <button
@@ -208,7 +208,9 @@ export function MultiChoiceDropdown({
 
                   {/* Label */}
                   <div
-                    className={`text-white py-1 px-3 rounded-md ${
+                    className={`${
+                      item.color !== "mono" ? "text-white" : ""
+                    }  py-1 px-3 rounded-md ${
                       colorClasses[item.color as Color].bg.normal
                     } text-sm`}
                   >

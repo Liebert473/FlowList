@@ -1,10 +1,10 @@
 import ProfileCard from "@/components/profile/ProfileCard";
+import { ThemeSection } from "@/components/theme/ThemeSection";
 export const ProfilePage = () => {
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex p-6">
-        <ProfileCard />
-      </div>
+    <div className="flex flex-col gap-6 p-6">
+      <ProfileCard />
+      <ThemeSection />
     </div>
   );
 };
