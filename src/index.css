@@ -109,6 +109,7 @@
   --sidebar-ring: oklch(0.708 0 0);
 
   /* Brand Colors */
+  --color-fl-primary: var(--color-fl-red);
   --color-fl-primary-hover: color-mix(in oklab, var(--color-fl-primary) 90%, transparent);
 
   --color-fl-hover: rgba(128, 128, 128, 0.1);

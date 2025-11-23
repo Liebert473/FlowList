@@ -1,11 +1,11 @@
 import { XIcon, PaletteIcon } from "@phosphor-icons/react";
 import { useState } from "react";
 import { colors, colorClasses } from "@/utils/colors";
-import { useThemeColor } from "./useThemeColor";
+import { useTheme } from "@/contexts/ThemeContext";
 
 export const ThemeSection = () => {
   const [openEdit, setOpenEdit] = useState(false);
-  const { color, setColor } = useThemeColor();
+  const { color, setColor } = useTheme();
 
   return (
     <div className="p-6 bg-fl-bg rounded-2xl border border-fl-border flex justify-between ">
