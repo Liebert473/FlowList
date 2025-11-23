@@ -1,4 +1,3 @@
-import { logOut } from "@/lib/auth";
 export const Dashboard = () => {
   return (
     <>
@@ -6,7 +5,6 @@ export const Dashboard = () => {
         <p className=""></p>
         Dashboard
       </p>
-      <button onClick={logOut}>Logout</button>
     </>
   );
 };

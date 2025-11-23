@@ -1,3 +1,4 @@
+import { LogoutSection } from "@/components/LogoutSection";
 import ProfileCard from "@/components/profile/ProfileCard";
 import { ThemeSection } from "@/components/theme/ThemeSection";
 export const ProfilePage = () => {
@@ -5,6 +6,7 @@ export const ProfilePage = () => {
     <div className="flex flex-col gap-6 p-6">
       <ProfileCard />
       <ThemeSection />
+      <LogoutSection />
     </div>
   );
 };
