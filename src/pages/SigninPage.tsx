@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signIn } from "@/lib/auth";
 import { signInWithGoogle } from "@/lib/auth";
+import Logo from "@/components/common/Logo";
+import { SvgImage2 } from "@/components/common/SvgImage2";
 
 export default function SignInPage() {
   const [email, setEmail] = useState("");
@@ -36,92 +38,99 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-50 to-slate-200">
-      <div className="bg-white shadow-xl rounded-2xl px-8 py-10 w-full max-w-md text-center">
-        <h1 className="text-3xl font-bold text-slate-800 mb-3">FlowList</h1>
-        <p className="text-slate-500 mb-8">
-          Organize your day with clarity and flow.
-        </p>
+    <div className="min-h-screen grid grid-cols-1 md:grid-cols-2 bg-fl-bg">
+      {/* Left */}
+      <div className="flex flex-col justify-center px-10 lg:px-20">
+        {/* Brand */}
+        <Logo />
 
-        <form onSubmit={handleEmailSignIn} className="space-y-4 text-left">
+        <h1 className="text-4xl font-bold text-fl-text mb-2 mt-8">
+          Welcome Back
+        </h1>
+        <p className="text-gray-500 mb-8">Please enter your details</p>
+
+        {/* Error */}
+        {errorMsg && (
+          <div className="mb-4 p-3 text-sm bg-red-100 text-red-600 rounded-lg">
+            {errorMsg}
+          </div>
+        )}
+
+        {/* Form */}
+        <form onSubmit={handleEmailSignIn} className="flex flex-col gap-4">
           <div>
-            <label className="block text-sm font-medium text-slate-700">
-              Email
-            </label>
+            <span className="block text-sm font-medium mb-2">
+              Email address
+            </span>
             <input
               type="email"
+              required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              required
-              className="w-full mt-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400"
-              placeholder="you@example.com"
+              className="w-full px-4 py-2 border rounded-lg bg-transparent focus:border-fl-primary outline-none"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-700">
-              Password
-            </label>
+            <span className="block text-sm font-medium mb-2">Password</span>
             <input
+              id="password"
               type="password"
+              required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
-              className="w-full mt-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400"
-              placeholder="••••••••"
+              className="w-full px-4 py-2 border rounded-lg bg-transparent text-fl-text focus:border-fl-primary outline-none"
             />
           </div>
 
-          {errorMsg && (
-            <p className="text-red-500 text-sm text-center">{errorMsg}</p>
-          )}
+          {/* Remember + Forgot */}
+          <div className="flex items-center justify-between text-sm mt-1">
+            <span className="flex items-center gap-2 cursor-pointer ">
+              <input type="checkbox" className="accent-fl-primary" />
+              Remember for 30 days
+            </span>
 
+            <span className="text-fl-primary cursor-pointer hover:underline">
+              Forgot password
+            </span>
+          </div>
+
+          {/* Sign in */}
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 bg-slate-900 text-white rounded-lg hover:bg-slate-800 font-medium transition disabled:opacity-50"
+            className="w-full py-3 bg-fl-primary text-white rounded-lg font-medium hover:bg-fl-primary-hover transition"
           >
-            {loading ? "Signing in..." : "Sign In"}
+            {loading ? "Loading..." : "Sign in"}
+          </button>
+
+          {/* Google */}
+          <button
+            onClick={handleSignInWithGoogle}
+            disabled={loading}
+            className="flex items-center justify-center gap-3 w-full py-3 rounded-lg border border-fl-border font-medium hover:border-fl-primary transition disabled:opacity-50"
+          >
+            <img
+              src="https://www.svgrepo.com/show/475656/google-color.svg"
+              alt="Google"
+              className="w-5 h-5"
+            />
+            Continue with Google
           </button>
         </form>
 
-        <div className="my-6 flex items-center">
-          <div className="flex-grow h-px bg-slate-300"></div>
-          <span className="px-3 text-slate-400 text-sm">or</span>
-          <div className="flex-grow h-px bg-slate-300"></div>
-        </div>
-
-        <button
-          onClick={handleSignInWithGoogle}
-          disabled={loading}
-          className="flex items-center justify-center gap-3 w-full py-3 rounded-lg border border-slate-300 font-medium text-slate-700 hover:bg-slate-100 transition disabled:opacity-50"
-        >
-          <img
-            src="https://www.svgrepo.com/show/475656/google-color.svg"
-            alt="Google"
-            className="w-5 h-5"
-          />
-          Continue with Google
-        </button>
-
-        <p className="text-sm mt-4 w-full">
-          Don't have an account?{" "}
-          <a href="/signup" className="text-blue-400">
-            Signup
+        {/* Sign Up */}
+        <p className="text-sm text-gray-600 mt-6 text-center">
+          Don't have an account?
+          <a href="/signup" className="text-fl-primary ml-1 hover:underline">
+            Sign up
           </a>
         </p>
+      </div>
 
-        <p className="text-xs text-slate-400 mt-6">
-          By signing in, you agree to FlowList’s{" "}
-          <a href="#" className="underline hover:text-slate-600">
-            Terms of Service
-          </a>{" "}
-          and{" "}
-          <a href="#" className="underline hover:text-slate-600">
-            Privacy Policy
-          </a>
-          .
-        </p>
+      {/* Right side illustration */}
+      <div className="hidden md:flex items-center justify-center bg-fl-primary/10 px-10">
+        <SvgImage2 />
       </div>
     </div>
   );

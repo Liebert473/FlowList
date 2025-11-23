@@ -39,7 +39,7 @@ export const ThemeSection = () => {
               </button>
             </div>
 
-            <div className="flex flex-wrap gap-6 overflow-y-auto justify-between">
+            <div className="flex flex-wrap gap-6 overflow-y-auto justify-around ">
               {colors.map((c, i) => (
                 <div key={i} className=" flex flex-col gap-2 items-center">
                   <div
@@ -53,7 +53,7 @@ export const ThemeSection = () => {
                       viewBox="0 0 52 52"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                       <g
                         id="SVGRepo_tracerCarrier"
                         stroke-linecap="round"
