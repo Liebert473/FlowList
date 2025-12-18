@@ -24,6 +24,7 @@ export type ItemType = {
   table_id: string; //uuid
   data: Record<string, any>;
   created_at: string;
+  content: Record<string, any>;
 }
 
 export type ColumnType = {
@@ -31,7 +32,7 @@ export type ColumnType = {
   user_id: string; //uuid
   table_id: string; //uuid
   title: string;
-  type: string
+  type: "text" | "date" | "choice" | "multiChoice";
   metadata: Record<string, any>;
   created_at: string;
 }

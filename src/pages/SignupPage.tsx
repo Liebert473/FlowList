@@ -102,7 +102,10 @@ export default function SignupPage() {
 
           {/* Google */}
           <button
-            onClick={handleSignInWithGoogle}
+            onClick={(e) => {
+              e.preventDefault();
+              handleSignInWithGoogle();
+            }}
             disabled={loading}
             className="flex items-center justify-center gap-3 w-full py-3 rounded-lg border border-fl-border font-medium hover:border-fl-primary transition disabled:opacity-50"
           >

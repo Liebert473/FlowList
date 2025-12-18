@@ -1,22 +1,22 @@
-import { type TableType } from "@/types/types";
+import { type ItemType } from "@/types/types";
 import TableHeader from "@/components/table/TableHeader";
 import Table from "@/components/table/Table";
 import { useState } from "react";
 import { useItems } from "@/features/items/useItems";
 import { useColumns } from "@/features/columns/useColumns";
 import { useMemo } from "react";
-import type { FilterState, SortState } from "@/types/types";
+import type { FilterState, SortState, TableType } from "@/types/types";
 import { getFilteredItems } from "./filter/FilterLogic";
 import { useSortedItems } from "./sort/SortLogic";
+import ItemPage from "./item/ItemPage";
 
 interface TablePlaceProps {
-  table: TableType;
+  table: TableType | undefined;
 }
 
 export const TablePlace = ({ table }: TablePlaceProps) => {
-  // 1. Fetch Raw Data
-  const { data: rawItems = [] } = useItems(table.id);
-  const { data: columns = [] } = useColumns(table.id);
+  const { data: rawItems = [] } = useItems(table?.id ?? "");
+  const { data: columns = [] } = useColumns(table?.id ?? "");
 
   // 2. Control State (Lifted Up)
   const [search, setSearch] = useState("");
@@ -55,8 +55,17 @@ export const TablePlace = ({ table }: TablePlaceProps) => {
   // 4. Sorting Logic (Using your Hook)
   const { sortedItems } = useSortedItems(processedItems, sortState, columns);
 
+  const [isOpened, setIsOpened] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [viewItem, setViewItem] = useState<ItemType | null>(null);
+
+  const handelViewItem = (item: ItemType) => {
+    setIsOpened(true);
+    setViewItem(item);
+  };
+
   return (
-    <div className="flex flex-col flex-1 overflow-auto">
+    <div className="flex flex-col flex-1 overflow-auto relative">
       <TableHeader
         table={table}
         columns={columns}
@@ -72,11 +81,20 @@ export const TablePlace = ({ table }: TablePlaceProps) => {
       />
       <div className="py-6 px-8 flex flex-1 overflow-auto">
         <Table
+          viewItem={handelViewItem}
           columns={columns || []}
           items={sortedItems || []}
           table={table}
         />
       </div>
+      <ItemPage
+        columns={columns}
+        item={viewItem || undefined}
+        isOpened={isOpened}
+        isExpanded={isExpanded}
+        onClose={() => setIsOpened(false)}
+        onToggleExpand={() => setIsExpanded((prev) => !prev)}
+      />
     </div>
   );
 };

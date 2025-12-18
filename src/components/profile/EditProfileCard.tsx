@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { X, FloppyDisk, ArrowCounterClockwise } from "@phosphor-icons/react";
+import { Spinner } from "@/components/ui/spinner";
+
 import { useProfile } from "@/contexts/ProfileContext";
 import type { ProfileType } from "@/types/types";
 import ProfileImageUpload from "./ProfileImageUpload";
@@ -13,8 +15,10 @@ export default function EditProfileCard({ onClose }: EditProfileCardProps) {
   const [avatar, setAvatar] = useState<File | null>(null);
   const [curProfile, setCurProfile] = useState<ProfileType | null>(profile);
   const [isChanged, setIsChanged] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSave = async () => {
+    setLoading(true);
     let updates = curProfile;
     if (updates) {
       if (avatar) {
@@ -26,6 +30,7 @@ export default function EditProfileCard({ onClose }: EditProfileCardProps) {
 
     setIsChanged(false);
     onClose();
+    setLoading(false);
   };
 
   const handleDiscard = () => {
@@ -114,13 +119,13 @@ export default function EditProfileCard({ onClose }: EditProfileCardProps) {
           <button
             onClick={handleSave}
             disabled={!isChanged}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition ${
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-fl-insider transition ${
               isChanged
-                ? "bg-fl-primary text-fl-insider hover:bg-fl-primary-hover"
+                ? "bg-fl-primary hover:bg-fl-primary-hover"
                 : "opacity-50 cursor-not-allowed bg-fl-primary"
             }`}
           >
-            <FloppyDisk size={18} weight="fill" />
+            {loading ? <Spinner /> : <FloppyDisk size={18} weight="fill" />}
             Save
           </button>
         </div>

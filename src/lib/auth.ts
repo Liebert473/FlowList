@@ -25,5 +25,6 @@ export const signInWithGoogle = async () => {
         redirectTo: `${window.location.origin}/auth/callback`
       },
     });
+    
     if (error) throw error;
   };

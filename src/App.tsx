@@ -12,18 +12,13 @@ import { Projects } from "./pages/Projects";
 import { Journals } from "./pages/Journals";
 import { Assistant } from "./pages/Assistant";
 import { ProfilePage } from "./pages/ProfilePage";
+import { LoaderFl } from "./components/common/loader/Loader";
 
 function App() {
   const { user, loading } = useAuth();
 
   const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
-    return loading ? (
-      <p>Loading...</p>
-    ) : user ? (
-      children
-    ) : (
-      <Navigate to="/signin" />
-    );
+    return loading ? <LoaderFl /> : user ? children : <Navigate to="/signin" />;
   };
   return (
     <BrowserRouter>

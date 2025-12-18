@@ -13,6 +13,10 @@ export default function DebouncedInput({ initialVal, onChange }: Props) {
     setValue(e.target.value);
   };
 
+  useEffect(() => {
+    setValue(initialVal);
+  }, [initialVal]);
+
   // Debounce logic: wait 500ms after the user stops typing
   useEffect(() => {
     const timeout = setTimeout(() => {

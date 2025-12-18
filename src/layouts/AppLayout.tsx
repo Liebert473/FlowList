@@ -14,7 +14,7 @@ export const AppLayout = () => {
         </aside>
 
         {/* Main Content */}
-        <main className="flex flex-1 flex-col overflow-auto custom-scrollbar">
+        <main className="flex flex-1 flex-col overflow-auto custom-scrollbar relative">
           <Outlet />
         </main>
       </div>

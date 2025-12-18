@@ -28,6 +28,7 @@ import DebouncedInput from "./DebouncedInput";
 import { useUpdateValue } from "@/features/values/useUpdateValue";
 
 import { useDeleteValue } from "@/features/values/useDeleteValues";
+import { Skeleton } from "@/components/ui/skeleton";
 
 type MultiChoiceProps = {
   column: ColumnType;
@@ -76,6 +77,16 @@ export function MultiChoiceDropdown({
   const handelChanges = (id: string, update: Partial<ValueType>) => {
     updateValue.mutate({ id, column_id: column.id, update });
   };
+
+  if (!values) {
+    return (
+      <div className="flex gap-2 items-center">
+        <Skeleton className="h-4 w-8" />
+        <Skeleton className="h-4 w-8" />
+        <Skeleton className="h-4 w-8" />
+      </div>
+    );
+  }
 
   return (
     <Popover open={open} onOpenChange={setOpen}>

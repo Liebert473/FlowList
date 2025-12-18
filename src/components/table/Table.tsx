@@ -1,28 +1,24 @@
 import type { ColumnType, ItemType, TableType } from "@/types/types";
-import { Checkbox } from "@/components/ui/checkbox";
-import { DataField } from "./DataField";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { DotsThreeVerticalIcon, MinusIcon } from "@phosphor-icons/react";
+import { ItemRow } from "./item/ItemRow";
+import { MinusIcon } from "@phosphor-icons/react";
 import { useDeleteItem } from "@/features/items/useDeleteItem";
 import { useCreateItem } from "@/features/items/useCreateItem";
 import { useState } from "react";
 import BulkActionsBar from "./BulkActionBar";
+import { Skeleton } from "../ui/skeleton";
 
 interface TableProps {
-  table: TableType;
+  table: TableType | undefined;
   items: ItemType[];
   columns: ColumnType[];
+  viewItem: (item: ItemType) => void;
 }
 
-const Table = ({ items, table, columns }: TableProps) => {
+const Table = ({ items, table, columns, viewItem }: TableProps) => {
   const deleteItem = useDeleteItem();
   const createItem = useCreateItem();
   const [selected, setSelected] = useState<ItemType[]>([]);
+  const rows = Array.from({ length: 6 });
 
   const toggleSelect = (item: ItemType) => {
     if (selected.includes(item)) {
@@ -46,14 +42,16 @@ const Table = ({ items, table, columns }: TableProps) => {
   };
 
   const handleDuplicate = (item: ItemType) => {
-    const newItem = {
-      ...item,
-      id: crypto.randomUUID(),
-      created_at: new Date().toISOString(), // optional but recommended
-      table_id: table.id, // ensure correct table
-    };
+    if (table) {
+      const newItem = {
+        ...item,
+        id: crypto.randomUUID(),
+        created_at: new Date().toISOString(), // optional but recommended
+        table_id: table?.id, // ensure correct table
+      };
 
-    createItem.mutate(newItem);
+      createItem.mutate(newItem);
+    }
   };
 
   return (
@@ -62,80 +60,54 @@ const Table = ({ items, table, columns }: TableProps) => {
         {/* Header */}
         <div className="px-8 sticky top-0 bg-fl-bg min-w-[1100px]">
           <div className="grid grid-cols-11 text-sm font-semibold text-fl-info pt-6 pb-4 border-b border-fl-border min-w-[900px]">
-            {selected.length ? (
-              <div
-                onClick={() => setSelected([])}
-                className="hover:border-gray-900 hover:dark:border-white border flex justify-center items-center w-5 h-5 rounded-md border-fl-border cursor-pointer text-fl-text"
-              >
-                <MinusIcon size={14} />
-              </div>
+            {!table || columns.length === 0 ? (
+              <ColumnsSkeleton />
             ) : (
-              <div></div>
+              <>
+                {selected.length ? (
+                  <div
+                    onClick={() => setSelected([])}
+                    className="hover:border-gray-900 hover:dark:border-white border flex justify-center items-center w-5 h-5 rounded-md border-fl-border cursor-pointer text-fl-text"
+                  >
+                    <MinusIcon size={14} />
+                  </div>
+                ) : (
+                  <div></div>
+                )}
+                {columns?.map((col) => (
+                  <div className="col-span-2" key={col.id}>
+                    {col.title}
+                  </div>
+                ))}
+              </>
             )}
-            {columns?.map((col) => (
-              <div className="col-span-2" key={col.id}>
-                {col.title}
-              </div>
-            ))}
           </div>
         </div>
 
         {/* Body */}
         <div className="flex flex-col min-w-[1100px] pb-16">
-          {items?.map((item) => (
-            <div
-              key={item.id}
-              className="px-8 hover:bg-fl-hover transition-colors"
-            >
-              <div className="grid grid-cols-11 items-center border-b border-fl-border text-sm">
-                {/* Select */}
-                <div className="">
-                  <Checkbox
-                    checked={selected.includes(item)}
-                    onClick={() => toggleSelect(item)}
-                    className="rounded-md w-5 h-5 text-white! cursor-pointer border-fl-border! data-[state=checked]:bg-fl-primary! shadow-none hover:border-gray-900! dark:hover:border-white!"
-                  />
+          {!table || columns.length === 0 ? (
+            rows.map(() => <ItemSkeleton />)
+          ) : (
+            <>
+              {items?.map((item) => (
+                <ItemRow
+                  key={item.id}
+                  item={item}
+                  columns={columns}
+                  isSelected={selected.includes(item)}
+                  onToggleSelect={toggleSelect}
+                  onOpen={viewItem}
+                  onDelete={(i) => deleteItem.mutate(i)}
+                  onDuplicate={handleDuplicate}
+                />
+              ))}
+              {items?.length == 0 && (
+                <div className="text-fl-info flex flex-1 justify-center items-center my-12">
+                  No item found.
                 </div>
-
-                {columns?.map((col, key) => (
-                  <div
-                    className="col-span-2 flex justify-between gap-2 items-center"
-                    key={key}
-                  >
-                    <DataField column={col} item={item} />
-                    {key == columns.length - 1 && (
-                      <div className="flex p-1 hover:bg-fl-hover rounded-md h-fit">
-                        <DropdownMenu>
-                          <DropdownMenuTrigger>
-                            <DotsThreeVerticalIcon
-                              size={18}
-                              className="text-fl-text cursor-pointer"
-                            />
-                          </DropdownMenuTrigger>
-                          <DropdownMenuContent className="bg-fl-bg border border-fl-border text-fl-text">
-                            <DropdownMenuItem
-                              onClick={() => deleteItem.mutate(item)}
-                            >
-                              Delete
-                            </DropdownMenuItem>
-                            <DropdownMenuItem
-                              onClick={() => handleDuplicate(item)}
-                            >
-                              Duplicate
-                            </DropdownMenuItem>
-                          </DropdownMenuContent>
-                        </DropdownMenu>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-          {items?.length == 0 && (
-            <div className="text-fl-info flex flex-1 justify-center items-center my-12">
-              No item found.
-            </div>
+              )}
+            </>
           )}
         </div>
       </div>
@@ -149,6 +121,59 @@ const Table = ({ items, table, columns }: TableProps) => {
           />
         </div>
       )}
+    </div>
+  );
+};
+
+const ColumnsSkeleton = () => {
+  return (
+    <>
+      <Skeleton className="w-4 h-4 rounded-md" />
+      <Skeleton className="h-4 col-span-2 w-[90%]" />
+      <Skeleton className="h-4 col-span-2 w-[90%]" />
+      <Skeleton className="h-4 col-span-2 w-[90%]" />
+      <Skeleton className="h-4 col-span-2 w-[90%]" />
+      <Skeleton className="h-4 col-span-2 w-[90%]" />
+    </>
+  );
+};
+
+const ItemSkeleton = () => {
+  return (
+    <div className="grid grid-cols-11 mx-8 py-4 items-center border-b border-fl-border dark:border-fl-border">
+      {/* Checkbox */}
+      <Skeleton className="w-4 h-4 rounded-md col-span-1 items-center" />
+
+      {/* Title */}
+      <Skeleton className="h-4 w-[90%] col-span-2 items-center" />
+
+      {/* Status */}
+      <div className="col-span-2 flex gap-2 items-center">
+        <Skeleton className="h-5 w-20 rounded-full" />
+      </div>
+
+      {/* Priority */}
+      <div className="col-span-2 flex gap-2">
+        <Skeleton className="h-5 w-20 rounded-full" />
+      </div>
+
+      {/* Category (multiple tags) */}
+      <div className="col-span-2 flex gap-2">
+        <Skeleton className="h-5 w-12 rounded-full" />
+        <Skeleton className="h-5 w-12 rounded-full" />
+        <Skeleton className="h-5 w-10 rounded-full" />
+      </div>
+
+      {/* Date */}
+      <div className="col-span-2 flex items-center justify-between">
+        <div className="flex gap-2">
+          <Skeleton className="h-5 w-5 rounded-md" />
+          <Skeleton className="h-4 w-28" />
+        </div>
+        <div>
+          <Skeleton className="h-5 w-5 rounded-md" />
+        </div>
+      </div>
     </div>
   );
 };

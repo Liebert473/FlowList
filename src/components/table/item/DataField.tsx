@@ -1,9 +1,9 @@
 import { useUpdateItem } from "@/features/items/useUpdateItem";
 import type { ColumnType, ItemType } from "@/types/types";
-import DebouncedInput from "../common/DebouncedInput";
-import { DatePicker } from "../common/DatePicker";
-import { MultiChoiceDropdown } from "../common/MultiChoice";
-import { ChoiceDropdown } from "../common/Choice";
+import DebouncedInput from "./input/DebouncedInput";
+import { DatePicker } from "./input/DatePicker";
+import { MultiChoiceDropdown } from "./input/MultiChoice";
+import { ChoiceDropdown } from "./input/Choice";
 
 interface DataFieldProps {
   column: ColumnType;
@@ -22,8 +22,6 @@ export const DataField = ({ column, item }: DataFieldProps) => {
       },
     });
   };
-  console.log(item);
-  console.log(item.data[column.id]);
   return (
     <div className="flex hover:bg-fl-bg hover:outline hover:outline-fl-primary rounded-md h-12 px-2 cursor-pointer transition flex-1 overflow-hidden">
       {"multiChoice" == column.type ? (
