@@ -59,7 +59,6 @@ import { LinkIcon } from "@/components/tiptap-icons/link-icon";
 
 // --- Hooks ---
 import { useIsBreakpoint } from "@/hooks/use-is-breakpoint";
-import { useWindowSize } from "@/hooks/use-window-size";
 
 // --- Styles ---
 import "@/components/tiptap-templates/simple/simple-editor.scss";
