@@ -1,0 +1,328 @@
+{
+  "tables": [
+    {
+      "slug": "my-tasks",
+      "title": "My Tasks",
+      "columns": [
+        {
+          "key": "col:title",
+          "type": "text",
+          "title": "Title",
+          "metadata": {}
+        },
+        {
+          "key": "col:status",
+          "type": "choice",
+          "title": "Status",
+          "metadata": {},
+          "default_values": [
+            {
+              "key": "val:todo",
+              "color": "red",
+              "label": "To Do"
+            },
+            {
+              "key": "val:inprogress",
+              "color": "blue",
+              "label": "In Progress"
+            },
+            {
+              "key": "val:done",
+              "color": "green",
+              "label": "Done"
+            }
+          ]
+        },
+        {
+          "key": "col:priority",
+          "type": "choice",
+          "title": "Priority",
+          "metadata": {},
+          "default_values": [
+            {
+              "key": "val:high",
+              "color": "red",
+              "label": "High"
+            },
+            {
+              "key": "val:medium",
+              "color": "orange",
+              "label": "Medium"
+            },
+            {
+              "key": "val:low",
+              "color": "green",
+              "label": "Low"
+            }
+          ]
+        },
+        {
+          "key": "col:category",
+          "type": "multiChoice",
+          "title": "Category",
+          "metadata": {}
+        },
+        {
+          "key": "col:date",
+          "type": "date",
+          "title": "Date",
+          "metadata": {}
+        }
+      ],
+      "initial_items": [
+        {
+          "data": {
+            "col:title": "Welcome to your new app!",
+            "col:status": [
+              "val:todo"
+            ]
+          }
+        }
+      ]
+    },
+{
+      "slug": "journals",
+      "title": "Journals",
+      "columns": [
+        {
+          "key": "col:title",
+          "type": "text",
+          "title": "Title",
+          "metadata": {}
+        },
+        {
+          "key": "col:status",
+          "type": "choice",
+          "title": "Status",
+          "metadata": {},
+          "default_values": [
+            {
+              "key": "val:todo",
+              "color": "red",
+              "label": "To Do"
+            },
+            {
+              "key": "val:inprogress",
+              "color": "blue",
+              "label": "In Progress"
+            },
+            {
+              "key": "val:done",
+              "color": "green",
+              "label": "Done"
+            }
+          ]
+        },
+        {
+          "key": "col:priority",
+          "type": "choice",
+          "title": "Priority",
+          "metadata": {},
+          "default_values": [
+            {
+              "key": "val:high",
+              "color": "red",
+              "label": "High"
+            },
+            {
+              "key": "val:medium",
+              "color": "orange",
+              "label": "Medium"
+            },
+            {
+              "key": "val:low",
+              "color": "green",
+              "label": "Low"
+            }
+          ]
+        },
+        {
+          "key": "col:category",
+          "type": "multiChoice",
+          "title": "Category",
+          "metadata": {}
+        },
+        {
+          "key": "col:date",
+          "type": "date",
+          "title": "Date",
+          "metadata": {}
+        }
+      ],
+      "initial_items": [
+        {
+          "data": {
+            "col:title": "Welcome to your new app!",
+            "col:status": [
+              "val:todo"
+            ]
+          }
+        }
+      ]
+    },
+    {
+  "tables": [
+    {
+      "slug": "my-tasks",
+      "title": "My Tasks",
+      "columns": [
+        {
+          "key": "col:title",
+          "type": "text",
+          "title": "Title",
+          "metadata": {}
+        },
+        {
+          "key": "col:status",
+          "type": "choice",
+          "title": "Status",
+          "metadata": {},
+          "default_values": [
+            {
+              "key": "val:todo",
+              "color": "red",
+              "label": "To Do"
+            },
+            {
+              "key": "val:inprogress",
+              "color": "blue",
+              "label": "In Progress"
+            },
+            {
+              "key": "val:done",
+              "color": "green",
+              "label": "Done"
+            }
+          ]
+        },
+        {
+          "key": "col:priority",
+          "type": "choice",
+          "title": "Priority",
+          "metadata": {},
+          "default_values": [
+            {
+              "key": "val:high",
+              "color": "red",
+              "label": "High"
+            },
+            {
+              "key": "val:medium",
+              "color": "orange",
+              "label": "Medium"
+            },
+            {
+              "key": "val:low",
+              "color": "green",
+              "label": "Low"
+            }
+          ]
+        },
+        {
+          "key": "col:category",
+          "type": "multiChoice",
+          "title": "Category",
+          "metadata": {}
+        },
+        {
+          "key": "col:date",
+          "type": "date",
+          "title": "Date",
+          "metadata": {}
+        }
+      ],
+      "initial_items": [
+        {
+          "data": {
+            "col:title": "Welcome to your new app!",
+            "col:status": [
+              "val:todo"
+            ]
+          }
+        }
+      ]
+    },
+{
+      "slug": "projects",
+      "title": "Projects",
+      "columns": [
+        {
+          "key": "col:title",
+          "type": "text",
+          "title": "Title",
+          "metadata": {}
+        },
+        {
+          "key": "col:status",
+          "type": "choice",
+          "title": "Status",
+          "metadata": {},
+          "default_values": [
+            {
+              "key": "val:todo",
+              "color": "red",
+              "label": "To Do"
+            },
+            {
+              "key": "val:inprogress",
+              "color": "blue",
+              "label": "In Progress"
+            },
+            {
+              "key": "val:done",
+              "color": "green",
+              "label": "Done"
+            }
+          ]
+        },
+        {
+          "key": "col:priority",
+          "type": "choice",
+          "title": "Priority",
+          "metadata": {},
+          "default_values": [
+            {
+              "key": "val:high",
+              "color": "red",
+              "label": "High"
+            },
+            {
+              "key": "val:medium",
+              "color": "orange",
+              "label": "Medium"
+            },
+            {
+              "key": "val:low",
+              "color": "green",
+              "label": "Low"
+            }
+          ]
+        },
+        {
+          "key": "col:category",
+          "type": "multiChoice",
+          "title": "Category",
+          "metadata": {}
+        },
+        {
+          "key": "col:date",
+          "type": "date",
+          "title": "Date",
+          "metadata": {}
+        }
+      ],
+      "initial_items": [
+        {
+          "data": {
+            "col:title": "Welcome to your new app!",
+            "col:status": [
+              "val:todo"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
+  ]
+}
