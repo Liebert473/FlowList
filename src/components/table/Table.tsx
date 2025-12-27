@@ -59,7 +59,14 @@ const Table = ({ items, table, columns, viewItem }: TableProps) => {
       <div className="custom-scrollbar flex flex-1 flex-col bg-fl-bg rounded-lg border border-fl-border text-fl-text overflow-auto relative">
         {/* Header */}
         <div className="px-8 sticky top-0 bg-fl-bg min-w-[1100px]">
-          <div className="grid grid-cols-11 text-sm font-semibold text-fl-info pt-6 pb-4 border-b border-fl-border min-w-[900px]">
+          <div
+            className="grid text-sm font-semibold text-fl-info pt-6 pb-4 border-b border-fl-border min-w-[900px]"
+            style={{
+              gridTemplateColumns: `repeat(${
+                !table || columns.length === 0 ? 11 : columns.length * 2 + 1
+              }, minmax(0, 1fr))`,
+            }}
+          >
             {!table || columns.length === 0 ? (
               <ColumnsSkeleton />
             ) : (

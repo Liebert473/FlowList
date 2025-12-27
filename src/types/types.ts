@@ -32,7 +32,7 @@ export type ColumnType = {
   user_id: string; //uuid
   table_id: string; //uuid
   title: string;
-  type: "text" | "date" | "choice" | "multiChoice";
+  type: "text" | "date" | "choice" | "multiChoice"| "relation";
   metadata: Record<string, any>;
   created_at: string;
 }

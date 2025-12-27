@@ -106,6 +106,7 @@ export default function SignInPage() {
 
           {/* Google */}
           <button
+            type="button"
             onClick={handleSignInWithGoogle}
             disabled={loading}
             className="flex items-center justify-center gap-3 w-full py-3 rounded-lg border border-fl-border font-medium hover:border-fl-primary transition disabled:opacity-50"

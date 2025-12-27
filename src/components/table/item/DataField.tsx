@@ -4,6 +4,7 @@ import DebouncedInput from "./input/DebouncedInput";
 import { DatePicker } from "./input/DatePicker";
 import { MultiChoiceDropdown } from "./input/MultiChoice";
 import { ChoiceDropdown } from "./input/Choice";
+import { RelationDropdown } from "./input/Relation";
 
 interface DataFieldProps {
   column: ColumnType;
@@ -38,6 +39,12 @@ export const DataField = ({ column, item }: DataFieldProps) => {
         />
       ) : column.type == "date" ? (
         <DatePicker value={item.data[column.id]} onChange={handelChanges} />
+      ) : "relation" == column.type ? (
+        <RelationDropdown
+          column={column}
+          selectedItems={item.data[column.id] || []}
+          onChange={handelChanges}
+        />
       ) : (
         <DebouncedInput
           initialVal={item.data[column.id]}

@@ -102,6 +102,7 @@ export default function SignupPage() {
 
           {/* Google */}
           <button
+            type="button"
             onClick={(e) => {
               e.preventDefault();
               handleSignInWithGoogle();

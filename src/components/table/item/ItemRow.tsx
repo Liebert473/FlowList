@@ -36,7 +36,14 @@ export function ItemRow({
       onMouseLeave={() => setIsHovered(false)}
       className="px-8 hover:bg-fl-hover transition-colors"
     >
-      <div className="grid grid-cols-11 items-center border-b border-fl-border text-sm">
+      <div
+        className="grid items-center border-b border-fl-border text-sm"
+        style={{
+          gridTemplateColumns: `repeat(${
+            columns.length * 2 + 1
+          }, minmax(0, 1fr))`,
+        }}
+      >
         {/* Select + Open */}
         <div className="flex justify-between items-center">
           <Checkbox

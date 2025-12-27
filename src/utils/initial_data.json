@@ -5,145 +5,109 @@
       "title": "My Tasks",
       "columns": [
         {
-          "key": "col:title",
+          "key": "task:col:title",
           "type": "text",
           "title": "Title",
           "metadata": {}
         },
         {
-          "key": "col:status",
+          "key": "task:col:status",
           "type": "choice",
           "title": "Status",
           "metadata": {},
           "default_values": [
-            {
-              "key": "val:todo",
-              "color": "red",
-              "label": "To Do"
-            },
-            {
-              "key": "val:inprogress",
-              "color": "blue",
-              "label": "In Progress"
-            },
-            {
-              "key": "val:done",
-              "color": "green",
-              "label": "Done"
-            }
+            { "key": "task:status:todo", "color": "red", "label": "To Do" },
+            { "key": "task:status:inprogress", "color": "blue", "label": "In Progress" },
+            { "key": "task:status:done", "color": "green", "label": "Done" }
           ]
         },
         {
-          "key": "col:priority",
+          "key": "task:col:priority",
           "type": "choice",
           "title": "Priority",
           "metadata": {},
           "default_values": [
-            {
-              "key": "val:high",
-              "color": "red",
-              "label": "High"
-            },
-            {
-              "key": "val:medium",
-              "color": "orange",
-              "label": "Medium"
-            },
-            {
-              "key": "val:low",
-              "color": "green",
-              "label": "Low"
-            }
+            { "key": "task:priority:high", "color": "red", "label": "High" },
+            { "key": "task:priority:medium", "color": "orange", "label": "Medium" },
+            { "key": "task:priority:low", "color": "green", "label": "Low" }
           ]
         },
         {
-          "key": "col:category",
+          "key": "task:col:category",
           "type": "multiChoice",
           "title": "Category",
-          "metadata": {}
+          "metadata": {},
+          "default_values": [
+            { "key": "task:category:personal", "color": "blue", "label": "Personal" },
+            { "key": "task:category:school", "color": "purple", "label": "School" },
+            { "key": "task:category:health", "color": "green", "label": "Health" }
+          ]
         },
         {
-          "key": "col:date",
+          "key": "task:col:date",
           "type": "date",
           "title": "Date",
+          "metadata": {}
+        },
+          {
+          "key": "task:col:relation",
+          "type": "relation",
+          "title": "Relation",
           "metadata": {}
         }
       ],
       "initial_items": [
         {
           "data": {
-            "col:title": "Welcome to your new app!",
-            "col:status": [
-              "val:todo"
-            ]
+            "task:col:title": "Welcome to My Tasks",
+            "task:col:status": ["task:status:todo"],
+            "task:col:priority": ["task:priority:medium"],
+            "task:col:category": ["task:category:personal"]
+          }
+        },
+        {
+          "data": {
+            "task:col:title": "Finish your first task",
+            "task:col:status": ["task:status:inprogress"],
+            "task:col:priority": ["task:priority:high"],
+            "task:col:category": ["task:category:school"]
           }
         }
       ]
     },
-{
+    {
       "slug": "journals",
       "title": "Journals",
       "columns": [
         {
-          "key": "col:title",
+          "key": "journal:col:title",
           "type": "text",
           "title": "Title",
           "metadata": {}
         },
         {
-          "key": "col:status",
+          "key": "journal:col:status",
           "type": "choice",
           "title": "Status",
           "metadata": {},
           "default_values": [
-            {
-              "key": "val:todo",
-              "color": "red",
-              "label": "To Do"
-            },
-            {
-              "key": "val:inprogress",
-              "color": "blue",
-              "label": "In Progress"
-            },
-            {
-              "key": "val:done",
-              "color": "green",
-              "label": "Done"
-            }
+            { "key": "journal:status:draft", "color": "orange", "label": "Draft" },
+            { "key": "journal:status:published", "color": "green", "label": "Published" }
           ]
         },
         {
-          "key": "col:priority",
-          "type": "choice",
-          "title": "Priority",
-          "metadata": {},
-          "default_values": [
-            {
-              "key": "val:high",
-              "color": "red",
-              "label": "High"
-            },
-            {
-              "key": "val:medium",
-              "color": "orange",
-              "label": "Medium"
-            },
-            {
-              "key": "val:low",
-              "color": "green",
-              "label": "Low"
-            }
-          ]
-        },
-        {
-          "key": "col:category",
+          "key": "journal:col:category",
           "type": "multiChoice",
           "title": "Category",
-          "metadata": {}
+          "metadata": {},
+          "default_values": [
+            { "key": "journal:category:reflection", "color": "blue", "label": "Reflection" },
+            { "key": "journal:category:ideas", "color": "purple", "label": "Ideas" },
+            { "key": "journal:category:daily", "color": "green", "label": "Daily" }
+          ]
         },
         {
-          "key": "col:date",
+          "key": "journal:col:date",
           "type": "date",
           "title": "Date",
           "metadata": {}
@@ -152,177 +116,94 @@
       "initial_items": [
         {
           "data": {
-            "col:title": "Welcome to your new app!",
-            "col:status": [
-              "val:todo"
-            ]
+            "journal:col:title": "Your first journal entry",
+            "journal:col:status": ["journal:status:draft"],
+            "journal:col:category": ["journal:category:daily"]
           }
-        }
-      ]
-    },
-    {
-  "tables": [
-    {
-      "slug": "my-tasks",
-      "title": "My Tasks",
-      "columns": [
-        {
-          "key": "col:title",
-          "type": "text",
-          "title": "Title",
-          "metadata": {}
         },
-        {
-          "key": "col:status",
-          "type": "choice",
-          "title": "Status",
-          "metadata": {},
-          "default_values": [
-            {
-              "key": "val:todo",
-              "color": "red",
-              "label": "To Do"
-            },
-            {
-              "key": "val:inprogress",
-              "color": "blue",
-              "label": "In Progress"
-            },
-            {
-              "key": "val:done",
-              "color": "green",
-              "label": "Done"
-            }
-          ]
-        },
-        {
-          "key": "col:priority",
-          "type": "choice",
-          "title": "Priority",
-          "metadata": {},
-          "default_values": [
-            {
-              "key": "val:high",
-              "color": "red",
-              "label": "High"
-            },
-            {
-              "key": "val:medium",
-              "color": "orange",
-              "label": "Medium"
-            },
-            {
-              "key": "val:low",
-              "color": "green",
-              "label": "Low"
-            }
-          ]
-        },
-        {
-          "key": "col:category",
-          "type": "multiChoice",
-          "title": "Category",
-          "metadata": {}
-        },
-        {
-          "key": "col:date",
-          "type": "date",
-          "title": "Date",
-          "metadata": {}
-        }
-      ],
-      "initial_items": [
         {
           "data": {
-            "col:title": "Welcome to your new app!",
-            "col:status": [
-              "val:todo"
-            ]
+            "journal:col:title": "Why journaling matters",
+            "journal:col:status": ["journal:status:published"],
+            "journal:col:category": ["journal:category:reflection"]
           }
         }
       ]
     },
-{
+    {
       "slug": "projects",
       "title": "Projects",
       "columns": [
         {
-          "key": "col:title",
+          "key": "project:col:title",
           "type": "text",
           "title": "Title",
           "metadata": {}
         },
         {
-          "key": "col:status",
+          "key": "project:col:status",
           "type": "choice",
           "title": "Status",
           "metadata": {},
           "default_values": [
-            {
-              "key": "val:todo",
-              "color": "red",
-              "label": "To Do"
-            },
-            {
-              "key": "val:inprogress",
-              "color": "blue",
-              "label": "In Progress"
-            },
-            {
-              "key": "val:done",
-              "color": "green",
-              "label": "Done"
-            }
+            { "key": "project:status:planning", "color": "orange", "label": "Planning" },
+            { "key": "project:status:active", "color": "blue", "label": "Active" },
+            { "key": "project:status:completed", "color": "green", "label": "Completed" }
           ]
         },
         {
-          "key": "col:priority",
+          "key": "project:col:priority",
           "type": "choice",
           "title": "Priority",
           "metadata": {},
           "default_values": [
-            {
-              "key": "val:high",
-              "color": "red",
-              "label": "High"
-            },
-            {
-              "key": "val:medium",
-              "color": "orange",
-              "label": "Medium"
-            },
-            {
-              "key": "val:low",
-              "color": "green",
-              "label": "Low"
-            }
+            { "key": "project:priority:high", "color": "red", "label": "High" },
+            { "key": "project:priority:medium", "color": "orange", "label": "Medium" },
+            { "key": "project:priority:low", "color": "green", "label": "Low" }
           ]
         },
         {
-          "key": "col:category",
+          "key": "project:col:category",
           "type": "multiChoice",
           "title": "Category",
-          "metadata": {}
+          "metadata": {},
+          "default_values": [
+            { "key": "project:category:software", "color": "blue", "label": "Software" },
+            { "key": "project:category:study", "color": "purple", "label": "Study" },
+            { "key": "project:category:personal", "color": "green", "label": "Personal" }
+          ]
         },
         {
-          "key": "col:date",
+          "key": "project:col:date",
           "type": "date",
           "title": "Date",
+          "metadata": {}
+        },
+          {
+          "key": "project:col:relation",
+          "type": "relation",
+          "title": "Relation",
           "metadata": {}
         }
       ],
       "initial_items": [
         {
           "data": {
-            "col:title": "Welcome to your new app!",
-            "col:status": [
-              "val:todo"
-            ]
+            "project:col:title": "Your first project",
+            "project:col:status": ["project:status:planning"],
+            "project:col:priority": ["project:priority:high"],
+            "project:col:category": ["project:category:software"]
+          }
+        },
+        {
+          "data": {
+            "project:col:title": "Build something meaningful",
+            "project:col:status": ["project:status:active"],
+            "project:col:priority": ["project:priority:medium"],
+            "project:col:category": ["project:category:study"]
           }
         }
       ]
     }
-  ]
-}
   ]
 }
