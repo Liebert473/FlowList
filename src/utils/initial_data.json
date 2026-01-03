@@ -1,7 +1,7 @@
 {
   "tables": [
     {
-      "slug": "my-tasks",
+      "slug": "tasks",
       "title": "My Tasks",
       "columns": [
         {

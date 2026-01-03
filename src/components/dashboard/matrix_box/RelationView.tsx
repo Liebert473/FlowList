@@ -1,6 +1,5 @@
 import { useState, useMemo } from "react";
 import { Check, Search } from "lucide-react";
-import { X } from "@phosphor-icons/react";
 import {
   Popover,
   PopoverContent,
@@ -10,24 +9,22 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 
-import type { ColumnType, ItemType } from "@/types/types";
+import type { ColumnType } from "@/types/types";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import { useTables } from "@/features/tables/useTables";
 import { useItems } from "@/features/items/useItems";
 import { useColumns } from "@/features/columns/useColumns";
 
-type RelationProps = {
+type RelationViewProps = {
   column: ColumnType;
   selectedItems: string[];
-  onChange: (updated: any) => void;
 };
 
-export function RelationDropdown({
+export function RelationViewDropdown({
   column,
   selectedItems,
-  onChange,
-}: RelationProps) {
+}: RelationViewProps) {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
 
@@ -50,16 +47,6 @@ export function RelationDropdown({
       } else return false;
     });
   }, [items, search]);
-
-  const toggleSelect = (item: ItemType) => {
-    const exists = selectedItems.some((v) => v === item.id);
-
-    if (exists) {
-      onChange(selectedItems.filter((v) => v !== item.id));
-    } else {
-      onChange([...selectedItems, item.id]);
-    }
-  };
 
   if (!items) {
     return (
@@ -84,15 +71,6 @@ export function RelationDropdown({
                   className={` shrink-0 flex items-center gap-1 px-3 py-1 rounded-md text-sm font-medium text-fl-insider bg-fl-primary`}
                 >
                   {item.data[titleCol?.id || ""]}
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleSelect(item);
-                    }}
-                    className="hover:opacity-80 cursor-pointer"
-                  >
-                    <X size={14} weight="bold" />
-                  </button>
                 </div>
               ))
           ) : (
@@ -126,7 +104,6 @@ export function RelationDropdown({
                     "flex w-full items-center px-3 py-2 text-left hover:bg-accent",
                     selected && "bg-accent/40"
                   )}
-                  onClick={() => toggleSelect(item)}
                 >
                   {/* Label */}
                   <div

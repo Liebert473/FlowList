@@ -6,6 +6,7 @@ import { useCreateItem } from "@/features/items/useCreateItem";
 import { useState } from "react";
 import BulkActionsBar from "./BulkActionBar";
 import { Skeleton } from "../ui/skeleton";
+import { Fragment } from "react";
 
 interface TableProps {
   table: TableType | undefined;
@@ -94,7 +95,11 @@ const Table = ({ items, table, columns, viewItem }: TableProps) => {
         {/* Body */}
         <div className="flex flex-col min-w-[1100px] pb-16">
           {!table || columns.length === 0 ? (
-            rows.map(() => <ItemSkeleton />)
+            rows.map((_, index) => (
+              <Fragment key={`skeleton-wrapper-${index}`}>
+                <ItemSkeleton />
+              </Fragment>
+            ))
           ) : (
             <>
               {items?.map((item) => (
